@@ -2,7 +2,8 @@
 **
 
 # Exclude
-!core
-!apps
+!core/
+!apps/
 !manage.py
 !requirements.txt
+!db
