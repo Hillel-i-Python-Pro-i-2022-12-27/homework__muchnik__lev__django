@@ -1,5 +1,5 @@
 # Core
-flask==2.2.2
+faker==15.3.4
 
 # [code_style]-[BEGIN]
 
