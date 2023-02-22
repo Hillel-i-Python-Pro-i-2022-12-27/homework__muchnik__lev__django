@@ -1,5 +1,4 @@
 from typing import NamedTuple
-from collections.abc import Iterator
 
 from faker import Faker
 
@@ -22,6 +21,6 @@ def generate_user() -> User:
     return User(login=faker.first_name(), email=faker.free_email(), password=faker.word())
 
 
-def generate_users(amount: int = 10) -> Iterator[User]:
+def generate_users(amount: int = 10):
     for _ in range(amount):
         yield generate_user()
