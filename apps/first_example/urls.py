@@ -10,7 +10,7 @@ urlpatterns = [
         include(
             [
                 path("", views.UsersView.as_view(), name="users"),
-                path("/<int:amount>", views.UsersView.as_view(), name="users"),
+                path("<int:amount>", views.UsersView.as_view(), name="users"),
             ]
         ),
     ),
