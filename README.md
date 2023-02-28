@@ -1,6 +1,6 @@
 # Hi, guys. i'm Lev :cat:
 ### Student Hillel IT School, I am from Kramatorsk. 
-### Homework №8 (Django) 
+### Homework Django 
 
 
 ### :rocket:Run Homework
