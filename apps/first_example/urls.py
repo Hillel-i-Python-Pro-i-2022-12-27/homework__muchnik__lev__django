@@ -5,8 +5,8 @@ from django.urls import include
 app_name = "first_example"
 
 urlpatterns = [
-  path(
-        "users",
+    path(
+        "users/",
         include(
             [
                 path("", views.UsersView.as_view(), name="users"),
