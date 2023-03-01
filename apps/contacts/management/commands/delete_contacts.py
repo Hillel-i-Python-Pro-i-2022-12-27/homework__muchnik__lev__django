@@ -19,11 +19,9 @@ class Command(BaseCommand):
 
         queryset = Contact.objects.all()
 
-        logger.info(f"Current amount of contacts beafor: {queryset.count()}")
-        queryset_for_delete = queryset
+        logger.info(f"Current amount of contacts before: {queryset.count()}")
         if is_only_auto_generated:
-            queryset_for_delete = queryset_for_delete.filter(is_auto_generated=True)
-        total_deleted, details = queryset_for_delete.delete()
+            queryset.filter(is_auto_generated=True)
+        total_deleted, details = queryset.delete()
 
         logger.info(f"Total deleted: {total_deleted}, details: {details}")
-        print()

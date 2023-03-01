@@ -4,13 +4,4 @@ from django.urls import include
 
 app_name = "contacts"
 
-urlpatterns = [
-    path(
-        "contacts/",
-        include(
-            [
-                path("list/", views.list_contacts, name="list"),
-            ]
-        ),
-    ),
-]
+urlpatterns = [path("list/", views.list_contacts, name="list")]
