@@ -1,8 +1,7 @@
 <header>
     <ul>
-        <li>
-            <a href="{% url "root:index" %}">Start</a>
-            <li><a href="{% url "first_example:users" amount=5 %}"> Users </a></li>
-        </li>
+        <li><a href="{% url "root:index" %}">Start</a></li>
+        <li><a href="{% url "first_example:users" amount=5 %}"> Users </a></li>
+        <li><a href="{% url "contacts:list" %}"> Contacts </a></li>
     </ul>
 </header>

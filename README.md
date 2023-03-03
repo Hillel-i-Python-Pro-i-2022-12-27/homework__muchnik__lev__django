@@ -1,10 +1,6 @@
 # Hi, guys. i'm Lev :cat:
-### Student Hillel IT School, I am from Kramatorsk. 
-### Homework №8 (Django) 
-# Django application
-## 🏠 Homework
-
-Homework related actions.
+### Student Hillel IT School, I am from Kramatorsk.
+### Homework Django 
 
 ### ▶️ Run
 
