@@ -43,4 +43,3 @@ class ContactDeleteView(DeleteView):
 class ContactDetailView(DetailView):
     model = Contact
     pk_url_kwarg = "pk"
-
