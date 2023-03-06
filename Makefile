@@ -64,6 +64,10 @@ migrations:
 migrate:
 	@python manage.py migrate
 
+.PHONY: init-dev-i-create-superuser
+# create superuser.
+init-dev-i-create-superuser:
+	@DJANGO_SUPERUSER_PASSWORD=lev20 python3 manage.py createsuperuser --user Lev --email lionrav19@gmail.com --no-input
 
 .PHONY: django-i-generate-contacts-i-50
 # Generate 50 contacts.

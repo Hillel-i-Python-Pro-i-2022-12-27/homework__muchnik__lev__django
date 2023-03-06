@@ -19,6 +19,9 @@
                 <p>
                     <span> Modified info: {{ contact.modified_at }} </span>
                 </p>
+                <p>
+                    <span> Country info: {{ contact.country }} </span>
+                </p>
             </li>
              <a href="{% url "contacts:update" pk=contact.id %}">
                     <button>

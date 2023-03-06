@@ -8,12 +8,7 @@ from apps.contacts.models import Contact
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
-        parser.add_argument(
-            "--amount",
-            help="How many contacts do you wont to generate?",
-            type=int,
-            default=10
-        )
+        parser.add_argument("--amount", help="How many contacts do you wont to generate?", type=int, default=10)
 
     def handle(self, *args, **options):
         amount: int = options["amount"]
