@@ -19,7 +19,6 @@ class ContactCreateView(CreateView):
     fields = (
         "name",
         "phone",
-        "is_auto_generated",
     )
     success_url = reverse_lazy("contacts:list")
 
@@ -30,7 +29,6 @@ class ContactUpdateView(UpdateView):
         "id",
         "name",
         "phone",
-        "is_auto_generated",
     )
     success_url = reverse_lazy("contacts:list")
 
