@@ -20,7 +20,7 @@
                     <span> Modified info: {{ contact.modified_at }} </span>
                 </p>
                 <p>
-
+                # та блен не видно,что добавил
                 {%  if contact.country is not None %}
                     <span> Country info: {{ contact.country }} </span>
                 </p>
@@ -30,6 +30,7 @@
                     <span> Country info: Unknown </span>
                 </p>
                 {% endif %}
+            #вот)
 
              <a href="{% url "contacts:update" pk=contact.id %}">
                     <button>
