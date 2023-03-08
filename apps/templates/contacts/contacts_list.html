@@ -19,10 +19,14 @@
                 <p>
                     <span> Modified info: {{ contact.modified_at }} </span>
                 </p>
+                {%  if contact.operator is not None %}
+                    <span>{{ contact.operator }}</span>
+                {% else %}
                 <p>
-                    <span> Country info: {{ contact.country }} </span>
+                    <span> Country info: Unknown </span>
                 </p>
-            </li>
+                {% endif %}
+
              <a href="{% url "contacts:update" pk=contact.id %}">
                     <button>
                         Edit
