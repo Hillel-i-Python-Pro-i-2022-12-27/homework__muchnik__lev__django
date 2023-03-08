@@ -15,13 +15,16 @@
         {% for contact in contacts %}
             <li>
                 <p> {{ contact.name }}</p>
-                <span> Phone number: {{ contact.phone }} </span>
+                <span> Phone number: {{contact.phone }} </span>
                 <p>
                     <span> Modified info: {{ contact.modified_at }} </span>
                 </p>
-                {%  if contact.operator is not None %}
-                    <span>{{ contact.operator }}</span>
+                <p>
+                {%  if contact.country is not None %}
+                    <span> Country info: {{ contact.country }} </span>
+                </p>
                 {% else %}
+
                 <p>
                     <span> Country info: Unknown </span>
                 </p>
