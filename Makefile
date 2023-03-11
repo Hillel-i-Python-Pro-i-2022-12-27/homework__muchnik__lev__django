@@ -62,7 +62,7 @@ migrations:
 .PHONY: migrate
 # Migrate
 migrate:
-	@python manage.py migrate
+	@python3 manage.py migrate
 
 .PHONY: init-dev-i-create-superuser
 # create superuser.
