@@ -15,11 +15,20 @@
         {% for contact in contacts %}
             <li>
                 <p> {{ contact.name }}</p>
-                <span> Phone number: {{ contact.phone }} </span>
+                <span> Phone number: {{contact.phone }} </span>
                 <p>
                     <span> Modified info: {{ contact.modified_at }} </span>
                 </p>
-            </li>
+                <p>
+
+                {%  if contact.country is not None %}
+                    <span> Country info: {{ contact.country }} </span>
+                {% else %}
+                    <span> Country info: Unknown </span>
+                </p>
+                {% endif %}
+
+
              <a href="{% url "contacts:update" pk=contact.id %}">
                     <button>
                         Edit
