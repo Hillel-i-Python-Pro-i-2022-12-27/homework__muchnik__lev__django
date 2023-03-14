@@ -21,16 +21,16 @@
                         {% endif %}
                     </div>
                 <div class="my-element-content">
-                <span> {{ contact.name }} </span>
+                 {{ contact.name }}
                 <span> - </span>
-                <span>Phone number: {{ contact.phone }} </span>
+                Phone number: {{ contact.phone }}
                 <span> - </span>
-                <span> Modified info: {{ contact.modified_at }} </span>
+                Modified info: {{ contact.modified_at }}
                 <span> - </span>
                 {%  if contact.country is not None %}
-                    <span> Country info: {{ contact.country }} </span>
+                    Country info: {{ contact.country }}
                 {% else %}
-                    <span> Country info: Unknown </span>
+                    Country info: Unknown
                 {% endif %}
                 </div>
             </div>
