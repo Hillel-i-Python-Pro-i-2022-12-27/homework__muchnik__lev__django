@@ -35,7 +35,7 @@ class Contact(models.Model):
         related_name="contacts",
         default=None,
         null=True,
-        blank=False,
+        blank=True
     )
 
     def __str__(self) -> str:
