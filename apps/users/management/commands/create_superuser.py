@@ -23,4 +23,3 @@ class Command(BaseCommand):
         )
 
         logger.info(f'Super user "{username}" was created!')
-
