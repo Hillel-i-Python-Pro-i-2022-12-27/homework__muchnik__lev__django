@@ -18,7 +18,7 @@ class SessionUserView(TemplateView):
         count_of_visits = session.get(KEY__COUNT_OF_VISITS, 0)
 
         count_of_visits += 1
-        date_real = str(datetime.now())
+        date_real = str(datetime.now().strftime("%d.%m.%Y | %H:%M:%S"))
         datetime_of_last_visit = session.get(KEY__PREVIOUS_TIME, 0)
 
         session[KEY__PREVIOUS_TIME] = date_real
