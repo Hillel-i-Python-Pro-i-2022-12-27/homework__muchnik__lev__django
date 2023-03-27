@@ -15,6 +15,7 @@
     </ul>
     </nav>
 
+    <ul>
     {% if user.is_authenticated %}
 
         <li class="last">
@@ -23,6 +24,8 @@
                 <div class="user-avatar">
                     {% if user.avatar %}
                         <img src="{{ user.avatar.url }}" alt="Avatar" >
+                    {% else %}
+                        Add a photo
                     {% endif %}
                 </div>
             </div>
@@ -39,5 +42,6 @@
             <a href="{% url "login" %}" > Login </a>| <a href="{% url "user:signup" %}" > Signup users</a>
         </li>
     {% endif %}
+    </ul>
 
 </header>
