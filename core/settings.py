@@ -57,6 +57,7 @@ LOCAL_APPS = [
     "apps.contacts",
     "apps.users",
     "apps.sessions_example",
+    "apps.middleware_counter",
 ]
 
 THIRD_PARTY_APPS = [
@@ -74,7 +75,17 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "apps.middleware_counter.middleware.RequestsMiddleware"
+
 ]
+
+USE_EXTRA_MIDDLEWARE = env.bool("CUSTOM__USE_EXTRA_MIDDLEWARE", False)
+if USE_EXTRA_MIDDLEWARE:
+    MIDDLEWARE.extend(
+        [
+            "apps.middleware_counter.middleware.RequestsMiddleware",
+        ]
+    )
 
 ROOT_URLCONF = "core.urls"
 
