@@ -2,27 +2,20 @@
 
 {%  block title %}
 
-    Logs List
+    Sessions List
 {%  endblock  %}
 
 {% block content %}
-    <a href="{% url "logger-counter:list_user" %}">
-        <button class="btn btn-primary">
-            Log List by User
-        </button>
-    </a>
-    <a href="{% url "logger-counter:list_sessions" %}">
-        <button class="btn btn-primary">
-            Log List by Sessions
-        </button>
-    </a>
-    <p>Count all Logs: {{ count_logs }}</p>
+
+
+    <p>Count Logs by sessions : {{ count_logs }}</p>
     <ol>
+
         {% for log in object_list %}
             <li>
                 <div class="col my-element-style">
                     <div class="my-element-content">
-                        <p>ID: {{ log.id }}</p>
+                        <p>ID: {{ log.name}}</p>
                         <p>Request path: {{ log.path }}</p>
                         {% if user.is_authenticated %}
                             <p>User: {{ log.user }}</p>
@@ -33,13 +26,12 @@
                         <p>Count_requests: {{ log.counter }}</p>
                         <p>Created time: {{ log.visit_time }}</p>
                     </div>
+
+
                 </div>
             </li>
         {% endfor %}
-
     </ol>
-    {%  include "middleware_counter/paginate.html"  %}
-
-
+    {%  include "middleware_counter/paginate.html" %}
 
 {% endblock %}
