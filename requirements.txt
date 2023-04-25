@@ -22,3 +22,15 @@ autoflake==2.0.0
 
 #core.
 django==4.1.5
+
+#For images
+Pillow==9.4.0
+
+#For forns
+crispy-bootstrap5==0.7
+
+#For enviromment variables and configuration
+django-environ==0.9.0
+
+# For PostgreSQL.
+psycopg2-binary==2.9.5

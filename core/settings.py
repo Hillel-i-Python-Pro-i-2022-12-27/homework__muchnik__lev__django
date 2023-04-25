@@ -11,26 +11,34 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 APPS_DIR = BASE_DIR.joinpath("apps")
 
+env = environ.Env()
+env.read_env(BASE_DIR.joinpath(".env"))
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-mji0)owi8j7q(6jqiq529m6#e_ut^iu81+y2ngx6#eyyp-31j%"
+SECRET_KEY = env.str("DJANGO__SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool("DJANGO__DEBUG", False)
 
-ALLOWED_HOSTS = [
-    "localhost",
-    "0.0.0.0",
-    "127.0.0.1",
-    "127.0.1.1",
-]
+ALLOWED_HOSTS = env.list("DJANGO__ALLOWED_HOSTS", default=[])
+if DEBUG:
+    ALLOWED_HOSTS.extend(
+        [
+            "localhost",
+            "0.0.0.0",
+            "127.0.0.1",
+        ]
+    )
 
 
 # Application definition
@@ -48,8 +56,15 @@ LOCAL_APPS = [
     "apps.first_example",
     "apps.contacts",
     "apps.users",
+    "apps.sessions_example",
+    "apps.middleware_counter",
 ]
-THIRD_PARTY_APPS = []
+
+THIRD_PARTY_APPS = [
+    "crispy_forms",
+    "crispy_bootstrap5",
+]
+
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
@@ -60,7 +75,17 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "apps.middleware_counter.middleware.RequestsMiddleware"
+
 ]
+
+USE_EXTRA_MIDDLEWARE = env.bool("CUSTOM__USE_EXTRA_MIDDLEWARE", False)
+if USE_EXTRA_MIDDLEWARE:
+    MIDDLEWARE.extend(
+        [
+            "apps.middleware_counter.middleware.RequestsMiddleware",
+        ]
+    )
 
 ROOT_URLCONF = "core.urls"
 
@@ -82,6 +107,10 @@ TEMPLATES = [
     },
 ]
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
 WSGI_APPLICATION = "core.wsgi.application"
 
 
@@ -89,12 +118,14 @@ WSGI_APPLICATION = "core.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db" / "db.sqlite3",
-    }
+    "default": env.db_url_config(
+        env.str(
+            "DJANGO__DB_URL",
+            f'postgres://{env.str("POSTGRES_USER")}:{env.str("POSTGRES_PASSWORD")}'
+            f'@{env.str("POSTGRES_HOST")}:{env.str("POSTGRES_PORT")}/{env.str("POSTGRES_DB")}',
+        )
+    )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -131,8 +162,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "static"
+STATICFILES_DIRS = [
+    APPS_DIR / "static",
+]
+
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGIN_REDIRECT_URL = "root:index"
+LOGOUT_REDIRECT_URL = "root:index"
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

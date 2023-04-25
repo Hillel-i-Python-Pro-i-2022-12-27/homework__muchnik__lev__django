@@ -21,13 +21,21 @@ class Contact(models.Model):
     modified_at = models.DateTimeField(auto_now=True)
 
     is_auto_generated = models.BooleanField(default=False)
+
+    avatar = models.ImageField(
+        max_length=255,
+        upload_to="contacts/contact/avatar/",
+        blank=True,
+        null=True,
+    )
+
     country = models.ForeignKey(
         Country,
         on_delete=models.CASCADE,
         related_name="contacts",
         default=None,
         null=True,
-        blank=False,
+        blank=True
     )
 
     def __str__(self) -> str:

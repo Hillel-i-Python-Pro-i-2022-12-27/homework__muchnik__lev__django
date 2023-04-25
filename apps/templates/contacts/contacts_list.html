@@ -1,49 +1,58 @@
 {% extends '_helpers/_base.html' %}
 
 {%  block title %}
-
     Contact list
 {%  endblock  %}
 
 {%  block content %}
     <a href="{% url "contacts:create" %}">
-        <button>
+        <button class="btn btn-success">
             Create new contact
         </button>
     </a>
+
     <ol>
         {% for contact in contacts %}
-            <li>
-                <p> {{ contact.name }}</p>
-                <span> Phone number: {{contact.phone }} </span>
-                <p>
-                    <span> Modified info: {{ contact.modified_at }} </span>
-                </p>
-                <p>
-
+            <li class="row my-elements-box">
+            <div class="col my-element-style">
+             <div class="contact-avatar">
+                        {% if contact.avatar %}
+                            <img src="{{ contact.avatar.url }}" alt="Avatar" class="my-avatar" >
+                        {% endif %}
+                    </div>
+                <div class="my-element-content">
+                 {{ contact.name }}
+                <span> - </span>
+                Phone number: {{ contact.phone }}
+                <span> - </span>
+                Modified info: {{ contact.modified_at }}
+                <span> - </span>
                 {%  if contact.country is not None %}
-                    <span> Country info: {{ contact.country }} </span>
+                    Country info: {{ contact.country }}
                 {% else %}
-                    <span> Country info: Unknown </span>
-                </p>
+                    Country info: Unknown
                 {% endif %}
+                </div>
+            </div>
+            </li>
 
-
+            <div class="my-element-controls">
              <a href="{% url "contacts:update" pk=contact.id %}">
-                    <button>
+                    <button class="btn btn-warning">
                         Edit
                     </button>
                 </a>
                 <a href="{% url "contacts:delete" pk=contact.id %}">
-                    <button>
+                    <button class="btn btn-danger">
                         Delete
                     </button>
                 </a>
                 <a href="{% url "contacts:details" pk=contact.id %}">
-                    <button>
+                    <button class="btn btn-info">
                         More details
                     </button>
                 </a>
+             </div>
         {% endfor %}
     </ol>
 {% endblock %}

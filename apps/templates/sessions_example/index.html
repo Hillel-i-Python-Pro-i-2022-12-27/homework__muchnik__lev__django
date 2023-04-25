@@ -1,0 +1,26 @@
+{% extends "_helpers/_base.html" %}
+
+{%  block title %}
+
+    Session user
+{%  endblock  %}
+
+{%  block content %}
+    <div >
+        <p class="col my-element-style">
+            {%  if session_id is not None %}
+            Session ID : {{ session_id }}
+            {% else %}
+            Session ID: Unknown
+            {% endif %}
+        </p>
+        <p class="col my-element-style">Counter of visits:  {{ count_of_visits }}</p>
+        <p class="col my-element-style"> Visit time: {{ date_real }}</p>
+        {% if datetime_of_last_visit %}
+            <p class="col my-element-style"> Time of last visit: {{ datetime_of_last_visit}}</p>
+        {% else %}
+            <p class="col my-element-style"> Time of last visit: no visit yet</p>
+        {% endif %}
+
+    </div>
+{% endblock %}
